@@ -1,28 +1,31 @@
 var button = document.getElementById("enter");
 var input = document.getElementById("userinput");
 var ul = document.querySelector("ul");
-var listItems = document.getElementsByTagName("li");
+var li = document.getElementsByTagName("li");
+var deleteBtn = document.getElementsByTagName("button");
 
 //get length of list
 function listLength() {
- console.log(listItems.length);
- return listItems.length
+   console.log(li.length);
+   return li.length
 }
 
 function deleteAction(){
-	var btn = document.createElement("button");
-			btn.appendChild(document.createTextNode("Delete!"));
-			listItems[i].appendChild(btn);
-			btn.onclick = removeParent;
+var btn = document.createElement("button");
+    btn.appendChild(document.createTextNode("Delete!"));
+    btn.onclick = removeParent;
+    li[i].appendChild(btn)
 }
+
 //create delete button for the lists
-for (i = 0; i < listLength(); i++ ) {
- deleteAction();
-	 }
+for (i=0; i<listLength();i++){
+  deleteAction();
+}
 
 //remove the item
 function removeParent() {
- event.target.parentNode.remove();
+  event.target.removeEventListener("click", removeParent, false);
+  event.target.parentNode.remove();
 }
 
 //check or uncheck list items
@@ -42,10 +45,11 @@ function createElement() {
 
  var li = document.createElement("li");
 		 li.appendChild(document.createTextNode(input.value));
-		 ul.appendChild(li);
+     ul.appendChild(li);
 		 input.value = "";
 
-		 deleteAction();
+     deleteAction();
+     i=i+1;
 };
 
 //when mouse clicked
